@@ -16,7 +16,7 @@ import java.util.Map;
 public class DataConfig {
 
 
-    public List<Map<String, Object>> values = new ArrayList<>();
+    public List<Map<String, Object>> articleInfos = new ArrayList<>();
     public Map<String, Integer> listOfWords = new HashMap<>();
     public List<String> wordsOfLevel_0 = new ArrayList<>();
     public List<String> wordsOfLevel_1 = new ArrayList<>();
@@ -111,7 +111,7 @@ public class DataConfig {
                     Map<String, Object> map = new HashMap<>();
                     map.put("unit", strUnit.toString());
                     map.put("article", strArticle.toString());
-                    values.add(map);
+                    articleInfos.add(map);
 
                     //clear temp data
                     strUnit = new StringBuffer();

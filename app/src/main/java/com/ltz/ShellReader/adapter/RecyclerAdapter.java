@@ -1,14 +1,17 @@
 package com.ltz.ShellReader.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ltz.ShellReader.R;
+
 import java.util.List;
+import java.util.Map;
 
 /**
  * RecyclerView适配器
@@ -16,62 +19,57 @@ import java.util.List;
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-	private List<?> mData;
+    private List<?> mData;
 
-	public RecyclerAdapter(List<?> data, Context context) {
-		mData = data;
-	}
+    public RecyclerAdapter(List<?> data, Context context) {
+        mData = data;
+    }
 
-	public OnItemClickListener itemClickListener;
+    public OnItemClickListener itemClickListener;
 
-	public void setOnItemClickListener(OnItemClickListener itemClickListener) {
-		this.itemClickListener = itemClickListener;
-	}
+    public void setOnItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
 
-	public interface OnItemClickListener {
-		void onItemClick(View view, int position);
-	}
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
 
-	public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-		public LinearLayout mLayout;
-		public TextView tvTitle;
-		public TextView tvClassify;
-		public TextView tvNum;
-		public TextView tvDetail;
-		public ImageView ivPic;
+        public CardView mCardView;
+        public TextView tvTitle;
 
-		public ViewHolder(View itemView) {
-			super(itemView);
-			mLayout = (LinearLayout) itemView;
-			mLayout.setOnClickListener(this);
-		}
+        public ViewHolder(View itemView) {
+            super(itemView);
+            mCardView = (CardView) itemView;
+            tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
+            mCardView.setOnClickListener(this);
+        }
 
-		@Override
-		public void onClick(View v) {
-			if (itemClickListener != null) {
-				itemClickListener.onItemClick(v, getPosition());
-			}
-		}
-	}
+        @Override
+        public void onClick(View v) {
+            if (itemClickListener != null) {
+                itemClickListener.onItemClick(v, getPosition());
+            }
+        }
+    }
 
-	@Override
-	public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_article_detail_listview, parent, false);
-		View view = null;
-		return new ViewHolder(view);
-	}
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recyclerview_main, parent, false);
+        return new ViewHolder(view);
+    }
 
-	@Override
-	public void onBindViewHolder(ViewHolder holder, int position) {
-//		ArticleList.ArticleInfo articleInfo = (ArticleList.ArticleInfo) mData.get(position);
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        Map<String, Object> articleInfo = (Map<String, Object>) mData.get(position);
+        holder.tvTitle.setText(articleInfo.get("unit").toString());
 
-//		holder.tvTitle.setText(articleInfo.getTitle());
+    }
 
-	}
-
-	@Override
-	public int getItemCount() {
-		return mData.size();
-	}
+    @Override
+    public int getItemCount() {
+        return mData.size();
+    }
 }
