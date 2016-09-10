@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/white"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -42,16 +43,16 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/layout_article_content" />
+    <include layout="@layout/layout_article_content"/>
 
     <android.view.ext.SatelliteMenu
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
-        android:layout_margin="8dp"
+        android:layout_margin="30dp"
         app:closeOnClick="true"
-        app:expandDuration="500"
+        app:expandDuration="450"
         app:mainImage="@mipmap/start"
         app:satelliteDistance="170dp"
         app:totalSpacingDegree="90" />

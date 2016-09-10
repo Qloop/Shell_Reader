@@ -59,6 +59,9 @@ public class AlignTextView extends TextView {
 
             mLineY += textHeight;
         }
+
+//        super.onDraw(canvas);
+
     }
 
     private void drawScaledText(Canvas canvas, int lineStart, String line, float lineWidth) {
